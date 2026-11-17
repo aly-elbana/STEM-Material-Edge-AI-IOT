@@ -1012,6 +1012,10 @@ Your capstone is not just about building an AI model.
 
 It is about engineering a complete system that can:
 
+Sense → Think → Act → Communicate → Improve
+
+Start simple, measure everything, test your assumptions, and build something that solves a real problem.
+
 **Sense → Think → Act → Communicate → Improve**
 
 Start simple, measure everything, test your assumptions, and build something that solves a real problem.
