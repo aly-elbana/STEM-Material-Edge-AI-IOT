@@ -1,5 +1,7 @@
 # Capstone Edge AI + IoT Starter Kit
 
+**📂 [Access All Project Resources & PDF Guides (Google Drive)](https://drive.google.com/drive/folders/1W0rYv8RmmZg2CmxdTBhHyNYOc4hY_TQC?usp=drive_link)**
+
 > **From Traditional IoT to Intelligent Edge Systems**  
 > A Complete Starting Point for Grade 12 STEM Capstone Projects.
 
