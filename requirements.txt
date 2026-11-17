@@ -1,0 +1,15 @@
+# Part 2 (works on a laptop or a Raspberry Pi)
+pandas
+numpy
+scikit-learn
+paho-mqtt>=2.0
+ai-edge-litert        # runs the .tflite model (Lab C)
+
+# Part 1 + Lab E on a Raspberry Pi only
+gpiozero
+adafruit-blinka
+adafruit-circuitpython-bme280
+adafruit-circuitpython-ads1x15
+
+# Only to re-create the .tflite model yourself (laptop, optional)
+# tensorflow
