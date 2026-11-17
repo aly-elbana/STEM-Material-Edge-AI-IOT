@@ -1,0 +1,11 @@
+# Training (laptop / Google Colab) - not needed on the Pi
+-r requirements.txt
+tensorflow                 # image classifier + quantization
+ultralytics                # YOLO (also fine on the Pi for inference / NCNN export)
+lap                        # needed by YOLO tracking (ml/yolo/count_line.py)
+ncnn                       # NCNN export (Ultralytics installs it on first export if online)
+onnx
+skl2onnx
+# optional, per project:
+# mediapipe                # eye_health, posture_coach (Tasks API)
+# vosk                     # pronunciation_coach (offline speech)

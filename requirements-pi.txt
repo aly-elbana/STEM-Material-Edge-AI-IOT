@@ -1,0 +1,24 @@
+# Raspberry Pi only (hardware). Create the venv WITH system packages so Picamera2 works:
+#   python3 -m venv --system-site-packages ~/capstone-env && source ~/capstone-env/bin/activate
+#   sudo apt install -y python3-picamera2 python3-opencv i2c-tools espeak-ng libportaudio2
+-r requirements.txt
+gpiozero
+lgpio
+adafruit-blinka
+adafruit-circuitpython-bme280
+adafruit-circuitpython-ads1x15
+adafruit-circuitpython-vl53l0x
+adafruit-circuitpython-mpu6050
+adafruit-circuitpython-ltr390
+adafruit-circuitpython-as7341
+adafruit-circuitpython-tcs34725
+adafruit-circuitpython-mlx90614
+adafruit-circuitpython-ina219
+adafruit-circuitpython-sgp30
+adafruit-circuitpython-pm25
+adafruit-circuitpython-servokit
+pyserial
+sounddevice
+# only if you run YOLO on the Pi:
+# ultralytics
+# lap

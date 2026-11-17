@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+env/
+data/
+models/
+runs/
+*.db
+*.csv
+!calibration/example_pairs.csv
+*.task
+*.pt
+*_ncnn_model/
+*.tflite
+!labs/part2_edge_ai/m3_model.tflite
+*.onnx
+.env

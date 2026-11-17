@@ -1,0 +1,37 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Capstone dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+body{font-family:system-ui,sans-serif;background:#0E1726;color:#F4F1EA;margin:0;padding:24px}
+h1{margin:0 0 4px;font-size:24px} .sub{color:#A9B6C8;margin-bottom:20px}
+.cards{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.card{background:#16233A;border-radius:14px;padding:14px 18px;min-width:150px}
+.card .k{color:#A9B6C8;font-size:13px}.card .v{font-size:28px;font-weight:700;color:#FF8A3D}
+.alert{color:#0E1726;background:#FF8A3D}.alert .k,.alert .v{color:#0E1726}
+canvas{background:#16233A;border-radius:14px;padding:10px}
+</style></head><body>
+<h1>Live dashboard</h1><div class="sub">MQTT topic: {{ topic }} · updates every second</div>
+<div class="cards" id="cards"></div><canvas id="chart" height="110"></canvas>
+<script>
+const chart = new Chart(document.getElementById('chart'), {type:'line',
+  data:{labels:[],datasets:[]}, options:{animation:false,
+  scales:{x:{ticks:{color:'#A9B6C8'}},y:{ticks:{color:'#A9B6C8'}}},
+  plugins:{legend:{labels:{color:'#F4F1EA'}}}}});
+async function tick(){
+  const r = await (await fetch('/data')).json();
+  const cards = document.getElementById('cards'); cards.innerHTML='';
+  for (const [topic,d] of Object.entries(r.latest)){
+    for (const [k,v] of Object.entries(d)){
+      if (k.startsWith('_')||k==='ts') continue;
+      const bad = (typeof v==='string' && /anomaly|alert|fault|fall/i.test(v)) || v===true;
+      cards.innerHTML += `<div class="card ${bad?'alert':''}"><div class="k">${topic.split('/').slice(-2).join('/')} · ${k}</div><div class="v">${typeof v==='number'?Math.round(v*100)/100:v}</div></div>`;
+    }
+  }
+  const keys = [...new Set(r.history.flatMap(h=>Object.keys(h).filter(k=>k!=='t')))];
+  chart.data.labels = r.history.map(h=>h.t);
+  chart.data.datasets = keys.map(k=>({label:k,data:r.history.map(h=>h[k]??null),borderWidth:2,pointRadius:0,spanGaps:true}));
+  chart.update();
+}
+setInterval(tick,1000); tick();
+</script></body></html>
